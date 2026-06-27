@@ -1,0 +1,150 @@
+/* ════════════════════════════════════════════════════════════════
+   O!GZ Studios — site styles
+   Ported 1:1 from the Claude Design DC component (OGz Studios.dc.html).
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Brand display font: Modern Era ───────────────────────────── */
+@font-face{font-family:"Modern Era";src:url("fonts/modern-era-medium.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Modern Era";src:url("fonts/modern-era-bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Modern Era";src:url("fonts/modern-era-extrabold.ttf") format("truetype");font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:"Modern Era";src:url("fonts/modern-era-black.ttf") format("truetype");font-weight:900;font-style:normal;font-display:swap}
+
+:root{
+  --green:#33EB05; --ultra:#3349EB; --epink:#E602BB; --yellow:#FFD500; --cyan:#1FBDFF; --mint:#28D9A8; --orange:#F59A1F; --tongue:#E33A1F;
+  --black:#000; --white:#fff; --cream:#F4F2EC;
+  --font-disp:"Modern Era","Space Grotesk",system-ui,sans-serif;
+  --font-en:"Space Grotesk",system-ui,sans-serif;
+  --font-ar:"IBM Plex Sans Arabic","Space Grotesk",sans-serif;
+  --font-mono:"Space Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--black);font-family:var(--font-en);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+::selection{background:var(--epink);color:#fff}
+h1,h2,h3{font-family:var(--font-disp);font-weight:800}
+
+/* ── Bilingual visibility (CSS-driven EN/AR switch) ───────────── */
+.t-ar{display:none}
+[data-lang="ar"] .t-en{display:none}
+[data-lang="ar"] .t-ar{display:inline}
+[data-lang="ar"]{font-family:var(--font-ar)}
+
+/* ── Reveal-on-scroll ─────────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(34px) scale(.99);transition:opacity .75s cubic-bezier(.16,.84,.3,1),transform .75s cubic-bezier(.16,.84,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ── Work tiles (Ken-Burns + hover frame) ─────────────────────── */
+@keyframes kb{from{transform:scale(1.015)}to{transform:scale(1.075)}}
+.tile-media{transition:transform .5s cubic-bezier(.2,.7,.2,1);animation:kb 17s ease-in-out infinite alternate}
+.tile:nth-child(2n) .tile-media{animation-duration:21s}
+.tile:nth-child(3n) .tile-media{animation-duration:25s}
+.tile:hover .tile-media{animation-play-state:paused}
+.work-grid{scrollbar-width:thin;scrollbar-color:var(--green) transparent}
+.work-grid::-webkit-scrollbar{height:6px}
+.work-grid::-webkit-scrollbar-track{background:rgba(255,255,255,.08)}
+.work-grid::-webkit-scrollbar-thumb{background:var(--green);border-radius:3px}
+.work-grid>.tile{flex:none;height:clamp(330px,52vh,560px);width:auto}
+.tile:hover .tile-frame{opacity:1}
+.tile-cta{opacity:0;transform:translateY(10px);transition:opacity .25s,transform .25s}
+.tile:hover .tile-cta{opacity:1;transform:none}
+.tile:hover .tile-scan{opacity:.5}
+
+/* ── Wordmark hover (clients fallback) ────────────────────────── */
+.wm{transition:color .15s,transform .15s}
+.wm:hover{color:var(--epink) !important;transform:translateY(-2px)}
+
+/* ── Animated underline ───────────────────────────────────────── */
+.ulink{position:relative}
+.ulink::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:3px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .2s ease}
+[dir="rtl"] .ulink::after{transform-origin:right}
+.ulink:hover::after,.ulink.on::after{transform:scaleX(1)}
+
+/* ── Services ─────────────────────────────────────────────────── */
+.svc{transition:transform .2s ease}
+.svc:hover{transform:translateY(-5px)}
+.svc:hover .svc-u{transform:scaleX(1)}
+.svc-u{transition:transform .25s ease;transform-origin:left}
+[dir="rtl"] .svc-u{transform-origin:right}
+.svcrow{transition:background .22s ease}
+.svc-ic{color:#fff;transition:color .22s ease}
+.svcrow:hover{background:rgba(255,255,255,.07)}
+.svcrow:hover .svc-ic{color:var(--green)}
+.svcrow:hover .svc-ttl{color:var(--green)}
+.svc-wrap{display:grid !important;grid-template-columns:1fr 1fr;gap:clamp(12px,1.5vw,20px);border-bottom:none !important}
+.svc-wrap>.svcrow{display:flex !important;flex-direction:column;align-items:flex-start;gap:14px;border:1px solid rgba(255,255,255,.2) !important;padding:clamp(26px,2.8vw,40px) !important;min-height:212px}
+.svc-wrap>.svcrow .svc-ic{display:block !important;color:var(--green)}
+.svc-wrap>.svcrow .svc-desc{margin-top:auto}
+@media (max-width:760px){.svc-wrap{grid-template-columns:1fr !important}}
+@media (max-width:860px){
+  .svcrow{grid-template-columns:auto 1fr !important;gap:6px 16px !important}
+  .svcrow .svc-ic{display:none !important}
+  .svcrow .svc-desc{grid-column:1 / -1 !important}
+}
+
+/* ── Mouth / scroll-cue idle motion ───────────────────────────── */
+.mouth-idle{animation:bob 4s ease-in-out infinite}
+.scrollcue{animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+@keyframes drift{to{background-position:0 -260px}}
+@keyframes mouthDrift{from{background-position:0 0}to{background-position:480px 384px}}
+.mouth-bg{animation:mouthDrift 36s linear infinite}
+
+/* ── Hero entrance ────────────────────────────────────────────── */
+@keyframes upIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+#hero h1{animation:upIn .9s cubic-bezier(.2,.7,.2,1) .04s both}
+
+/* ── Generic CTA hover-lift ───────────────────────────────────── */
+a[href="#contact"],a[href="#work"],a[href^="mailto"],a[href^="tel"]{transition:transform .18s cubic-bezier(.2,.7,.2,1)}
+a[href="#contact"]:hover,a[href="#work"]:hover,a[href^="mailto"]:hover,a[href^="tel"]:hover{transform:translateY(-2px)}
+
+*:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+a,button{-webkit-tap-highlight-color:transparent}
+img{-webkit-user-drag:none}
+
+/* ── Marquees ─────────────────────────────────────────────────── */
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+[dir="rtl"] .marq-track{animation-direction:reverse}
+.lmrow{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.lmtrack{display:flex;width:max-content;will-change:transform}
+.lmtrack img{display:block}
+.lmrow:hover .lmtrack{animation-play-state:paused}
+.lmtrack img{transition:filter .25s ease,opacity .25s ease}
+.tile-scan{background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 1px,transparent 1px 4px);animation:drift 7s linear infinite;opacity:.13;transition:opacity .3s}
+
+/* ── Hover states ported from DC `style-hover` attributes ─────── */
+.btn-ghost-dark{transition:background .15s,color .15s}
+.btn-ghost-dark:hover{background:#000;color:var(--green)}
+.btn-totop{transition:background .18s,color .18s}
+.btn-totop:hover{background:var(--green);color:#000;border-color:var(--green)}
+
+/* ── Sticky nav (transparent over hero → cream on scroll) ─────── */
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;transition:background .22s ease,box-shadow .22s ease;background:transparent}
+.site-nav.scrolled{background:var(--cream);box-shadow:0 1px 0 rgba(0,0,0,.12)}
+.logo-top{height:38px;width:auto;display:block}
+.logo-scrolled{height:40px;width:auto;display:none}
+.site-nav.scrolled .logo-top{display:none}
+.site-nav.scrolled .logo-scrolled{display:block}
+
+/* ── Mobile menu overlay ──────────────────────────────────────── */
+.menu-overlay{position:fixed;inset:0;z-index:150;background:#000;display:flex;flex-direction:column;transition:opacity .3s ease,transform .3s ease;opacity:0;transform:translateY(-12px);pointer-events:none}
+.menu-overlay.open{opacity:1;transform:translateY(0);pointer-events:auto}
+
+/* ── <image-slot> empty state (vanilla replica) ───────────────── */
+image-slot{position:relative;display:block;overflow:hidden;background:rgba(0,0,0,.04);cursor:pointer;
+  font:13px/1.3 system-ui,-apple-system,sans-serif;color:rgba(0,0,0,.55)}
+image-slot .is-ring{position:absolute;inset:0;pointer-events:none;border:1.5px dashed rgba(0,0,0,.25);transition:border-color .12s}
+image-slot[data-over] .is-ring{border-color:#c96442}
+image-slot .is-empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:12px}
+image-slot .is-empty .cap{max-width:90%;font-weight:500;letter-spacing:.01em}
+image-slot .is-empty .sub{font-size:11px}
+image-slot[data-filled] .is-empty{display:none}
+image-slot img.is-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
+image-slot[data-filled] img.is-img{display:block}
+
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .mouth-idle,.scrollcue,.tile-scan,.marq-track,.lmtrack,.mouth-bg,#hero h1,.tile-media{animation:none}
+  .tile:hover .tile-media{transform:none}
+  html{scroll-behavior:auto}
+}
+@media (max-width:860px){ .nav-links{display:none !important} .nav-burger{display:flex !important} .svc-grid{grid-template-columns:1fr !important} .awd-grid,.contact-grid{grid-template-columns:1fr !important} .cities{grid-template-columns:1fr !important} .work-grid .tile{grid-column:span 2 !important} .foot-grid{grid-template-columns:1fr 1fr !important} .ledger-row,.team-row{grid-template-columns:1fr !important;gap:4px !important} }
