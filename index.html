@@ -7,7 +7,8 @@
 <meta name="description" content="O!GZ Studios — an award-winning, filmmaker-led creative & production house. Full-fledged media production from the first idea to the final frame. Riyadh · Warsaw · Cairo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,7 +17,7 @@
 
   <div id="progress" aria-hidden="true" style="position:fixed;top:0;left:0;right:0;height:3px;z-index:120;transform:scaleX(0);transform-origin:left;background:var(--green);will-change:transform"></div>
 
-  <a href="#work" class="skip-link" style="position:absolute;left:-9999px;top:0;z-index:200;background:var(--green);color:#000;padding:10px 16px;font-family:var(--font-mono);font-size:12px"><span class="t-en">Skip to content</span><span class="t-ar">تخطَّ إلى المحتوى</span></a>
+  <a href="#hero" class="skip-link" style="position:absolute;left:-9999px;top:0;z-index:200;background:var(--green);color:#000;padding:10px 16px;font-family:var(--font-mono);font-size:12px"><span class="t-en">Skip to content</span><span class="t-ar">تخطَّ إلى المحتوى</span></a>
 
   <!-- ░░ NAV ░░ -->
   <header class="site-nav">
@@ -29,7 +30,7 @@
       <div style="display:flex;align-items:center;gap:12px;flex:none">
         <button id="langToggle" style="border-radius:999px;border:2px solid #000;background:transparent;color:#000;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;padding:7px 15px;cursor:pointer;text-transform:uppercase;font-weight:700"><span class="t-en">عربي</span><span class="t-ar">EN</span></button>
         <a href="#contact" style="border-radius:999px;background:#000;color:var(--green);font-weight:700;font-size:14px;padding:10px 22px;text-decoration:none;white-space:nowrap"><span class="t-en">Start a project</span><span class="t-ar">ابدأ مشروعك</span></a>
-        <button class="nav-burger" id="navBurger" aria-label="Menu" style="display:none;width:44px;height:44px;align-items:center;justify-content:center;background:#000;border:none;cursor:pointer;flex-direction:column;gap:5px">
+        <button class="nav-burger" id="navBurger" aria-label="Menu" aria-controls="menuOverlay" aria-expanded="false" style="display:none;width:44px;height:44px;align-items:center;justify-content:center;background:#000;border:none;cursor:pointer;flex-direction:column;gap:5px">
           <span style="width:18px;height:2px;background:var(--green)"></span>
           <span style="width:18px;height:2px;background:var(--green)"></span>
         </button>
@@ -51,7 +52,7 @@
   </div>
 
   <!-- ░░ HERO — electric green ░░ -->
-  <section id="hero" data-screen-label="Hero" style="position:relative;min-height:100vh;background:var(--green);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end">
+  <section id="hero" tabindex="-1" data-screen-label="Hero" style="position:relative;min-height:100vh;background:var(--green);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;outline:none">
     <img src="assets/mouth-magenta.png" alt="" aria-hidden="true" class="mouth-idle" style="position:absolute;top:clamp(82px,12vh,140px);inset-inline-end:clamp(-30px,2vw,40px);height:clamp(150px,30vw,430px);width:auto">
     <div style="position:relative;max-width:1640px;width:100%;margin:0 auto;padding:0 clamp(18px,3.4vw,44px) clamp(54px,10vh,110px);z-index:2">
       <div style="font-family:var(--font-mono);font-size:13px;font-weight:700;letter-spacing:.26em;color:#000;margin-bottom:24px;display:inline-flex;align-items:center;gap:10px"><span style="width:11px;height:11px;background:var(--epink);border-radius:50%"></span><span class="t-en">SHOWREEL — 2026 · RIYADH · WARSAW · CAIRO</span><span class="t-ar">ريِل — ٢٠٢٦ · الرياض · وارسو · القاهرة</span></div>
@@ -90,7 +91,7 @@
         <div>
           <div style="font-family:var(--font-mono);font-size:13px;font-weight:700;letter-spacing:.24em;color:var(--green);margin-bottom:18px">01 — <span class="t-en">SELECTED WORK</span><span class="t-ar">أعمال مختارة</span></div>
           <h2 style="margin:0;font-size:clamp(44px,7vw,108px);line-height:.92;letter-spacing:-.03em"><span class="t-en">Roll the tape.</span><span class="t-ar">شغّل الشريط.</span></h2>
-          <p style="margin:22px 0 0;max-width:50ch;color:rgba(255,255,255,.72);font-weight:500;font-size:clamp(15px,1.5vw,19px);line-height:1.5"><span class="t-en">Films, series, ads, and everything in between — for the brands and ministries building the new Saudi story.</span><span class="t-ar" style="line-height:1.85">أفلام، مسلسلات، إعلانات، وكل شي بينهم — لعلامات ووزارات تكتب قصة السعودية الجديدة.</span></p>
+          <p style="margin:22px 0 0;max-width:50ch;color:rgba(255,255,255,.85);font-weight:500;font-size:clamp(15px,1.5vw,19px);line-height:1.5"><span class="t-en">Films, series, ads, and everything in between — for the brands and ministries building the new Saudi story.</span><span class="t-ar" style="line-height:1.85">أفلام، مسلسلات، إعلانات، وكل شي بينهم — لعلامات ووزارات تكتب قصة السعودية الجديدة.</span></p>
         </div>
         <a href="#contact" class="ulink" style="font-family:var(--font-mono);font-size:13px;font-weight:700;letter-spacing:.14em;color:var(--green);text-decoration:none;white-space:nowrap;padding-bottom:4px"><span class="t-en">FULL SHOWREEL · 02:00 ▶</span><span class="t-ar">الريِل كامل · ٠٢:٠٠ ▶</span></a>
       </div>
@@ -115,37 +116,37 @@
           <span style="font-family:var(--font-mono);font-size:clamp(13px,1.3vw,16px);font-weight:700;color:var(--green)">01</span>
           <svg class="svc-ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:clamp(38px,4vw,52px);height:auto"><rect x="3" y="10" width="17" height="13" rx="1.5"></rect><path d="M20 14l8-4v12l-8-4z"></path><circle cx="8" cy="6.5" r="2.3"></circle><circle cx="14.5" cy="6.5" r="2.3"></circle></svg>
           <h3 class="svc-ttl" style="margin:0;font-size:clamp(19px,1.9vw,27px);font-weight:800;letter-spacing:-.01em;transition:color .22s ease"><span class="t-en">Video Production</span><span class="t-ar">إنتاج فيديو متكامل</span></h3>
-          <p class="svc-desc" style="margin:0;color:rgba(255,255,255,.66);font-weight:500;font-size:clamp(14px,1.4vw,17px);line-height:1.5"><span class="t-en">End-to-end — script, direction, production and post, all under one roof.</span><span class="t-ar" style="line-height:1.8">من الألف للياء — سيناريو، إخراج، إنتاج، ومونتاج تحت سقف واحد.</span></p>
+          <p class="svc-desc" style="margin:0;color:rgba(255,255,255,.88);font-weight:500;font-size:clamp(14px,1.4vw,17px);line-height:1.5"><span class="t-en">End-to-end — script, direction, production and post, all under one roof.</span><span class="t-ar" style="line-height:1.8">من الألف للياء — سيناريو، إخراج، إنتاج، ومونتاج تحت سقف واحد.</span></p>
         </div>
         <div class="svcrow" style="display:grid;grid-template-columns:clamp(34px,3.4vw,52px) clamp(48px,4.6vw,66px) minmax(160px,1fr) 1.5fr;gap:clamp(14px,2vw,36px);align-items:center;padding:clamp(20px,2.5vw,32px) clamp(8px,1.4vw,20px);border-top:1px solid rgba(255,255,255,.2)">
           <span style="font-family:var(--font-mono);font-size:clamp(13px,1.3vw,16px);font-weight:700;color:var(--green)">02</span>
           <svg class="svc-ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:clamp(38px,4vw,52px);height:auto"><path d="M16 4a8 8 0 0 1 4.8 14.4c-.9.7-1.3 1.6-1.3 2.6v.5h-7v-.5c0-1-.4-1.9-1.3-2.6A8 8 0 0 1 16 4z"></path><path d="M12.5 25h7M13.5 28h5"></path></svg>
           <h3 class="svc-ttl" style="margin:0;font-size:clamp(19px,1.9vw,27px);font-weight:800;letter-spacing:-.01em;transition:color .22s ease"><span class="t-en">Creative Content &amp; Concept</span><span class="t-ar">المحتوى الإبداعي وتطوير الأفكار</span></h3>
-          <p class="svc-desc" style="margin:0;color:rgba(255,255,255,.66);font-weight:500;font-size:clamp(14px,1.4vw,17px);line-height:1.5"><span class="t-en">Concepts with a straight face — built to be remembered.</span><span class="t-ar" style="line-height:1.8">أفكار بوجهٍ جاد — مصمّمة لتبقى في الذاكرة.</span></p>
+          <p class="svc-desc" style="margin:0;color:rgba(255,255,255,.88);font-weight:500;font-size:clamp(14px,1.4vw,17px);line-height:1.5"><span class="t-en">Concepts with a straight face — built to be remembered.</span><span class="t-ar" style="line-height:1.8">أفكار بوجهٍ جاد — مصمّمة لتبقى في الذاكرة.</span></p>
         </div>
         <div class="svcrow" style="display:grid;grid-template-columns:clamp(34px,3.4vw,52px) clamp(48px,4.6vw,66px) minmax(160px,1fr) 1.5fr;gap:clamp(14px,2vw,36px);align-items:center;padding:clamp(20px,2.5vw,32px) clamp(8px,1.4vw,20px);border-top:1px solid rgba(255,255,255,.2)">
           <span style="font-family:var(--font-mono);font-size:clamp(13px,1.3vw,16px);font-weight:700;color:var(--green)">03</span>
           <svg class="svc-ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:clamp(38px,4vw,52px);height:auto"><rect x="9" y="3" width="14" height="26" rx="3"></rect><path d="M14 12.5l5 3.5-5 3.5z"></path></svg>
           <h3 class="svc-ttl" style="margin:0;font-size:clamp(19px,1.9vw,27px);font-weight:800;letter-spacing:-.01em;transition:color .22s ease"><span class="t-en">Short-Form &amp; Social</span><span class="t-ar">محتوى قصير وسوشال</span></h3>
-          <p class="svc-desc" style="margin:0;color:rgba(255,255,255,.66);font-weight:500;font-size:clamp(14px,1.4vw,17px);line-height:1.5"><span class="t-en">Reels and social made for the feed, not squeezed into it.</span><span class="t-ar" style="line-height:1.8">ريلز ومحتوى للسوشال مصمّم للفيد، مو مزحوم فيه.</span></p>
+          <p class="svc-desc" style="margin:0;color:rgba(255,255,255,.88);font-weight:500;font-size:clamp(14px,1.4vw,17px);line-height:1.5"><span class="t-en">Reels and social made for the feed, not squeezed into it.</span><span class="t-ar" style="line-height:1.8">ريلز ومحتوى للسوشال مصمّم للفيد، مو مزحوم فيه.</span></p>
         </div>
         <div class="svcrow" style="display:grid;grid-template-columns:clamp(34px,3.4vw,52px) clamp(48px,4.6vw,66px) minmax(160px,1fr) 1.5fr;gap:clamp(14px,2vw,36px);align-items:center;padding:clamp(20px,2.5vw,32px) clamp(8px,1.4vw,20px);border-top:1px solid rgba(255,255,255,.2)">
           <span style="font-family:var(--font-mono);font-size:clamp(13px,1.3vw,16px);font-weight:700;color:var(--green)">04</span>
           <svg class="svc-ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:clamp(38px,4vw,52px);height:auto"><path d="M6 13v6h3l11 6V7L9 13H6z"></path><path d="M24 13.5a5 5 0 0 1 0 5"></path></svg>
           <h3 class="svc-ttl" style="margin:0;font-size:clamp(19px,1.9vw,27px);font-weight:800;letter-spacing:-.01em;transition:color .22s ease"><span class="t-en">Commercial &amp; Branded</span><span class="t-ar">الإعلانات والمحتوى للعلامات</span></h3>
-          <p class="svc-desc" style="margin:0;color:rgba(255,255,255,.66);font-weight:500;font-size:clamp(14px,1.4vw,17px);line-height:1.5"><span class="t-en">Commercials and brand films that say it straight — and still make you smile.</span><span class="t-ar" style="line-height:1.8">إعلانات وأفلام علامات تقولها على بلاطة — وتضحّكك.</span></p>
+          <p class="svc-desc" style="margin:0;color:rgba(255,255,255,.88);font-weight:500;font-size:clamp(14px,1.4vw,17px);line-height:1.5"><span class="t-en">Commercials and brand films that say it straight — and still make you smile.</span><span class="t-ar" style="line-height:1.8">إعلانات وأفلام علامات تقولها على بلاطة — وتضحّكك.</span></p>
         </div>
         <div class="svcrow" style="display:grid;grid-template-columns:clamp(34px,3.4vw,52px) clamp(48px,4.6vw,66px) minmax(160px,1fr) 1.5fr;gap:clamp(14px,2vw,36px);align-items:center;padding:clamp(20px,2.5vw,32px) clamp(8px,1.4vw,20px);border-top:1px solid rgba(255,255,255,.2)">
           <span style="font-family:var(--font-mono);font-size:clamp(13px,1.3vw,16px);font-weight:700;color:var(--green)">05</span>
           <svg class="svc-ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:clamp(38px,4vw,52px);height:auto"><rect x="3" y="9" width="26" height="18" rx="2.5"></rect><circle cx="16" cy="18" r="5.5"></circle><path d="M10.5 9l2-4h7l2 4"></path></svg>
           <h3 class="svc-ttl" style="margin:0;font-size:clamp(19px,1.9vw,27px);font-weight:800;letter-spacing:-.01em;transition:color .22s ease"><span class="t-en">Photo &amp; Video Shoots</span><span class="t-ar">تصوير فوتوغرافي وفيديو</span></h3>
-          <p class="svc-desc" style="margin:0;color:rgba(255,255,255,.66);font-weight:500;font-size:clamp(14px,1.4vw,17px);line-height:1.5"><span class="t-en">Stills and motion — food, product, fashion and lifestyle.</span><span class="t-ar" style="line-height:1.8">صور وفيديو — طعام، منتجات، أزياء، وأسلوب حياة.</span></p>
+          <p class="svc-desc" style="margin:0;color:rgba(255,255,255,.88);font-weight:500;font-size:clamp(14px,1.4vw,17px);line-height:1.5"><span class="t-en">Stills and motion — food, product, fashion and lifestyle.</span><span class="t-ar" style="line-height:1.8">صور وفيديو — طعام، منتجات، أزياء، وأسلوب حياة.</span></p>
         </div>
         <div class="svcrow" style="display:grid;grid-template-columns:clamp(34px,3.4vw,52px) clamp(48px,4.6vw,66px) minmax(160px,1fr) 1.5fr;gap:clamp(14px,2vw,36px);align-items:center;padding:clamp(20px,2.5vw,32px) clamp(8px,1.4vw,20px);border-top:1px solid rgba(255,255,255,.2)">
           <span style="font-family:var(--font-mono);font-size:clamp(13px,1.3vw,16px);font-weight:700;color:var(--green)">06</span>
           <svg class="svc-ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:clamp(38px,4vw,52px);height:auto"><path d="M4 11h24M4 21h24"></path><circle cx="20" cy="11" r="2.6"></circle><circle cx="11" cy="21" r="2.6"></circle></svg>
           <h3 class="svc-ttl" style="margin:0;font-size:clamp(19px,1.9vw,27px);font-weight:800;letter-spacing:-.01em;transition:color .22s ease"><span class="t-en">Editing &amp; Creative Direction</span><span class="t-ar">المونتاج والإدارة الإبداعية</span></h3>
-          <p class="svc-desc" style="margin:0;color:rgba(255,255,255,.66);font-weight:500;font-size:clamp(14px,1.4vw,17px);line-height:1.5"><span class="t-en">Edit, sound, color and VFX that make the message land.</span><span class="t-ar" style="line-height:1.8">مونتاج وصوت وتصحيح ألوان ومؤثرات توصّل الرسالة.</span></p>
+          <p class="svc-desc" style="margin:0;color:rgba(255,255,255,.88);font-weight:500;font-size:clamp(14px,1.4vw,17px);line-height:1.5"><span class="t-en">Edit, sound, color and VFX that make the message land.</span><span class="t-ar" style="line-height:1.8">مونتاج وصوت وتصحيح ألوان ومؤثرات توصّل الرسالة.</span></p>
         </div>
       </div>
 
@@ -154,7 +155,7 @@
           <h3 style="margin:0;font-size:clamp(24px,3vw,44px);font-weight:800;letter-spacing:-.02em;max-width:20ch;line-height:1.02"><span class="t-en">Got something to make? Let's keep a straight face about it.</span><span class="t-ar">عندك شي تبي تسوّيه؟ خلّونا نتعامل معه بوجهٍ جاد.</span></h3>
           <div style="font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.12em;margin-top:14px"><span class="t-en">RIYADH · WARSAW · CAIRO</span><span class="t-ar">الرياض · وارسو · القاهرة</span></div>
         </div>
-        <a href="#contact" style="background:#000;color:var(--green);font-weight:700;font-size:16px;padding:16px 32px;text-decoration:none;white-space:nowrap"><span class="t-en">Start a project</span><span class="t-ar">ابدأ مشروع</span></a>
+        <a href="#contact" style="background:#000;color:var(--green);font-weight:700;font-size:16px;padding:16px 32px;text-decoration:none;white-space:nowrap"><span class="t-en">Start a project</span><span class="t-ar">ابدأ مشروعك</span></a>
       </div>
     </div>
   </section>
@@ -231,7 +232,7 @@
           <div class="tile-scan" style="position:absolute;inset:0;pointer-events:none;opacity:.16"></div>
           <div style="position:relative">
             <div style="font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.16em;color:var(--green)"><span class="t-en">SHORT FILM · DIR. NADA KHALIFA</span><span class="t-ar">فيلم قصير · إخراج ندى خليفة</span></div>
-            <div style="font-family:var(--font-disp);font-size:clamp(30px,3.6vw,52px);font-weight:800;letter-spacing:-.02em;margin-top:14px;line-height:1">“Qahr” <span style="font-family:var(--font-ar)">قهر</span></div>
+            <div style="font-family:var(--font-disp);font-size:clamp(30px,3.6vw,52px);font-weight:800;letter-spacing:-.02em;margin-top:14px;line-height:1"><span class="t-en">“Qahr” <span dir="rtl" style="font-family:var(--font-ar);unicode-bidi:isolate">قهر</span></span><span class="t-ar">قهر</span></div>
           </div>
           <div style="position:relative;display:flex;align-items:flex-end;gap:18px;margin-top:30px">
             <div data-count="10" style="font-family:var(--font-disp);font-size:clamp(76px,11vw,150px);font-weight:800;line-height:.8;color:var(--green);letter-spacing:-.04em">0</div>
@@ -283,7 +284,7 @@
   <section id="team" data-screen-label="Team" style="background:var(--cream);padding:clamp(68px,8.5vw,124px) 0;scroll-margin-top:70px">
     <div style="max-width:1640px;margin:0 auto;padding:0 clamp(18px,3.4vw,44px)">
       <div class="reveal" style="max-width:60ch;margin-bottom:clamp(40px,5vw,64px)">
-        <div style="font-family:var(--font-mono);font-size:13px;font-weight:700;letter-spacing:.24em;color:#000;margin-bottom:18px"><span style="color:var(--green)">06</span> — <span class="t-en">CAST &amp; CREW</span><span class="t-ar">الفريق</span></div>
+        <div style="font-family:var(--font-mono);font-size:13px;font-weight:700;letter-spacing:.24em;color:#000;margin-bottom:18px"><span style="color:var(--ultra)">06</span> — <span class="t-en">CAST &amp; CREW</span><span class="t-ar">الفريق</span></div>
         <h2 style="margin:0;font-size:clamp(36px,5.4vw,84px);line-height:.96;letter-spacing:-.03em"><span class="t-en">Filmmaker-led, on purpose.</span><span class="t-ar">يقوده صنّاع أفلام، عن قصد.</span></h2>
         <p style="margin:22px 0 0;color:#000;opacity:.75;font-weight:500;font-size:clamp(15px,1.5vw,19px);line-height:1.5;max-width:48ch"><span class="t-en">The people are the credential. Here's who makes the work.</span><span class="t-ar" style="line-height:1.85">الناس هم الضمانة. هؤلاء من يصنعون الشغل.</span></p>
       </div>
@@ -301,7 +302,7 @@
           <h2 style="margin:0;font-size:clamp(48px,8.6vw,138px);line-height:.9;letter-spacing:-.04em"><span class="t-en">Let's make <span style="color:#fff;-webkit-text-stroke:2px #000">something</span>.</span><span class="t-ar">يلا نسوّي <span style="color:#fff;-webkit-text-stroke:2px #000">شي</span>.</span></h2>
           <p style="margin:28px 0 0;color:#000;font-weight:500;font-size:clamp(16px,1.7vw,21px);line-height:1.5;max-width:46ch"><span class="t-en">Got a brief, a budget, or just a spark? Bring it. We'll tell you straight what it takes.</span><span class="t-ar" style="line-height:1.85">عندك بريف، أو ميزانية، أو حتى مجرّد فكرة؟ هاتها. ونقولك بصراحة وش تحتاج.</span></p>
           <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:36px">
-            <a href="mailto:info@ogzstudios.com?subject=New%20project%20enquiry&body=Hi%20O!GZ%20team%2C%0A%0AWe%20would%20like%20to%20start%20a%20project.%0A%0AProject%3A%0AScope%3A%0ATimeline%3A%0ABudget%3A%0A%0AThanks%2C" style="background:#000;color:var(--green);font-weight:700;font-size:16px;padding:17px 34px;text-decoration:none"><span class="t-en">Start a project</span><span class="t-ar">ابدأ مشروع</span></a>
+            <a href="mailto:info@ogzstudios.com?subject=New%20project%20enquiry&body=Hi%20O!GZ%20team%2C%0A%0AWe%20would%20like%20to%20start%20a%20project.%0A%0AProject%3A%0AScope%3A%0ATimeline%3A%0ABudget%3A%0A%0AThanks%2C" style="background:#000;color:var(--green);font-weight:700;font-size:16px;padding:17px 34px;text-decoration:none"><span class="t-en">Start a project</span><span class="t-ar">ابدأ مشروعك</span></a>
             <a href="mailto:info@ogzstudios.com?subject=New%20project%20enquiry&body=Hi%20O!GZ%20team%2C%0A%0AWe%20would%20like%20to%20start%20a%20project.%0A%0AProject%3A%0AScope%3A%0ATimeline%3A%0ABudget%3A%0A%0AThanks%2C" class="ulink" style="display:inline-flex;align-items:center;font-weight:700;font-size:16px;color:#000;text-decoration:none;padding:17px 4px"><span class="t-en">Or email us →</span><span class="t-ar">أو راسلنا →</span></a>
           </div>
         </div>
@@ -313,7 +314,7 @@
             <span style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em"><span class="t-en">CALL</span><span class="t-ar">اتصل</span></span><bdi style="font-size:clamp(15px,1.6vw,19px);font-weight:700">+966 58 155 5345</bdi>
           </a>
           <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:18px 0;border-bottom:2px solid #000">
-            <span style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em"><span class="t-en">STUDIO</span><span class="t-ar">الاستوديو</span></span><bdi style="font-size:clamp(14px,1.5vw,17px);font-weight:600;text-align:end">Al Tawaan Dist, Riyadh, KSA</bdi>
+            <span style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em"><span class="t-en">STUDIO</span><span class="t-ar">الاستوديو</span></span><bdi style="font-size:clamp(14px,1.5vw,17px);font-weight:600;text-align:end"><span class="t-en">Al Tawaan Dist, Riyadh, KSA</span><span class="t-ar">حي التعاون، الرياض، السعودية</span></bdi>
           </div>
           <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.06em;color:#000">
             <a href="#contact" class="ulink" style="color:#000;text-decoration:none;padding-bottom:2px">Instagram</a><a href="#contact" class="ulink" style="color:#000;text-decoration:none;padding-bottom:2px">LinkedIn</a><a href="#contact" class="ulink" style="color:#000;text-decoration:none;padding-bottom:2px">YouTube</a><a href="#contact" class="ulink" style="color:#000;text-decoration:none;padding-bottom:2px">Vimeo</a>
@@ -333,7 +334,7 @@
           <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--green);margin-bottom:14px">O!GZ STUDIOS · RIYADH · WARSAW · CAIRO</div>
           <h2 style="margin:0;font-size:clamp(28px,3.6vw,52px);line-height:.98;letter-spacing:-.03em"><span class="t-en">A straight face that makes you <span style="color:var(--green)">laugh.</span></span><span class="t-ar">وش جاد <span style="color:var(--green)">بيضحّك.</span></span></h2>
         </div>
-        <a href="#contact" style="display:inline-flex;align-items:center;gap:12px;background:var(--green);color:#000;font-weight:700;font-size:clamp(15px,1.5vw,17px);padding:16px 30px;text-decoration:none;white-space:nowrap"><span class="t-en">Start a project</span><span class="t-ar">ابدأ مشروع</span> <span style="font-size:18px">→</span></a>
+        <a href="#contact" style="display:inline-flex;align-items:center;gap:12px;background:var(--green);color:#000;font-weight:700;font-size:clamp(15px,1.5vw,17px);padding:16px 30px;text-decoration:none;white-space:nowrap"><span class="t-en">Start a project</span><span class="t-ar">ابدأ مشروعك</span> <span style="font-size:18px">→</span></a>
       </div>
 
       <div class="foot-grid" style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:clamp(28px,3vw,48px);padding:clamp(28px,3.4vw,44px) 0;border-bottom:1px solid rgba(255,255,255,.18)">

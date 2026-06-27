@@ -9,7 +9,7 @@
   // ── helpers ───────────────────────────────────────────────────
   const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   // Localized text → EN/AR sibling spans (CSS shows the active one).
-  const loc = (o) => `<span class="t-en">${esc(o.en)}</span><span class="t-ar">${esc(o.ar)}</span>`;
+  const loc = (o) => `<span class="t-en">${esc(o && o.en != null ? o.en : "")}</span><span class="t-ar">${esc(o && o.ar != null ? o.ar : "")}</span>`;
   const $  = (sel, ctx = document) => ctx.querySelector(sel);
 
   // ── data (verbatim from DC getters) ───────────────────────────
@@ -27,10 +27,10 @@
     { client:{en:"Floward",ar:"فلاورد"}, title:{en:"Ramadan Campaign",ar:"حملة رمضان"}, disc:{en:"Branded Film",ar:"فيلم علامة"}, year:"2024", col:1, ar:"4/5", img:"img/heritage.jpg", watch:"https://www.instagram.com/flowardeg/reel/DPOxSIgE_vP/" },
     { client:{en:"Food & Beverage",ar:"أغذية ومشروبات"}, title:{en:"Grazing Table",ar:"طاولة التذوّق"}, disc:{en:"Food Photography",ar:"تصوير طعام"}, year:"2024", col:1, ar:"4/5", img:"img/charcuterie.jpg" },
     { client:{en:"Food & Beverage",ar:"أغذية ومشروبات"}, title:{en:"Stone-Baked",ar:"مخبوز بالحجر"}, disc:{en:"Food Photography",ar:"تصوير طعام"}, year:"2023", col:1, ar:"4/5", img:"img/pizza.jpg" },
-    { client:{en:"Te3rafny Zein",ar:"تعرفني زين"}, title:{en:"Te3rafny Zein",ar:"تعرفني زين"}, disc:{en:"Short Film",ar:"فيلم قصير"}, year:"2024", col:1, ar:"4/5", bg:"linear-gradient(135deg,#1a0a2e,#3349EB)", watch:"https://www.youtube.com/watch?v=n15ZXzXOY_I", embed:"https://www.youtube.com/embed/n15ZXzXOY_I?autoplay=1" },
-    { client:{en:"Comedy",ar:"كوميديا"}, title:{en:"Comedy Interviews",ar:"مقابلات كوميدية"}, disc:{en:"Digital Series",ar:"سلسلة رقمية"}, year:"2024", col:1, ar:"4/5", bg:"linear-gradient(135deg,#0d1f0d,#CCFF00 280%)", watch:"https://www.youtube.com/watch?v=LH-9P-3tBGg", embed:"https://www.youtube.com/embed/LH-9P-3tBGg?autoplay=1" },
-    { client:{en:"Barra El7esba",ar:"برة الحسبة"}, title:{en:"Barra El7esba",ar:"برة الحسبة"}, disc:{en:"Short Film",ar:"فيلم قصير"}, year:"2024", col:1, ar:"4/5", bg:"linear-gradient(135deg,#1c0808,#d63031)", watch:"https://www.youtube.com/watch?v=cDpH3Q-KuSM", embed:"https://www.youtube.com/embed/cDpH3Q-KuSM?autoplay=1" },
-    { client:{en:"Product Reels",ar:"ريلز المنتجات"}, title:{en:"Product Reels",ar:"ريلز المنتجات"}, disc:{en:"Social Content",ar:"محتوى سوشال"}, year:"2025", col:1, ar:"4/5", bg:"linear-gradient(135deg,#0a0a0a,#FF6B9D 300%)", watch:"https://www.instagram.com/p/DPl8C4RCHVa/" },
+    { client:{en:"Te3rafny Zein",ar:"تعرفني زين"}, title:{en:"Te3rafny Zein",ar:"تعرفني زين"}, disc:{en:"Short Film",ar:"فيلم قصير"}, year:"2024", col:1, ar:"4/5", bg:"linear-gradient(150deg,#3349EB 0%,#1a0a2e 70%,#000 100%)", watch:"https://www.youtube.com/watch?v=n15ZXzXOY_I", embed:"https://www.youtube.com/embed/n15ZXzXOY_I?autoplay=1" },
+    { client:{en:"Comedy",ar:"كوميديا"}, title:{en:"Comedy Interviews",ar:"مقابلات كوميدية"}, disc:{en:"Digital Series",ar:"سلسلة رقمية"}, year:"2024", col:1, ar:"4/5", bg:"linear-gradient(150deg,#33EB05 0%,#0d3d12 55%,#000 100%)", watch:"https://www.youtube.com/watch?v=LH-9P-3tBGg", embed:"https://www.youtube.com/embed/LH-9P-3tBGg?autoplay=1" },
+    { client:{en:"Barra El7esba",ar:"برة الحسبة"}, title:{en:"Barra El7esba",ar:"برة الحسبة"}, disc:{en:"Short Film",ar:"فيلم قصير"}, year:"2024", col:1, ar:"4/5", bg:"linear-gradient(150deg,#E33A1F 0%,#5c130a 60%,#000 100%)", watch:"https://www.youtube.com/watch?v=cDpH3Q-KuSM", embed:"https://www.youtube.com/embed/cDpH3Q-KuSM?autoplay=1" },
+    { client:{en:"Product Reels",ar:"ريلز المنتجات"}, title:{en:"Product Reels",ar:"ريلز المنتجات"}, disc:{en:"Social Content",ar:"محتوى سوشال"}, year:"2025", col:1, ar:"4/5", bg:"linear-gradient(150deg,#E602BB 0%,#4a0a3d 60%,#000 100%)", watch:"https://www.instagram.com/p/DPl8C4RCHVa/" },
     { client:{en:"Automotive",ar:"سيارات"}, title:{en:"City Drive",ar:"جولة المدينة"}, disc:{en:"Brand Commercial",ar:"إعلان علامة"}, year:"2024", col:2, ar:"40/17", img:"img/car.jpg" },
   ];
 
@@ -124,25 +124,32 @@
         : w.watch
         ? `<span>↗</span> <span class="t-en">WATCH</span><span class="t-ar">شغّل</span>`
         : `<span class="t-en">VIEW CASE</span><span class="t-ar">شوف العمل</span>`;
+      // Decorative background image is aria-hidden — the tile's own text carries the name.
       const mediaStyle = w.img
-        ? `<img class="tile-media" src="${w.img}" alt="${esc(w.title.en)}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">`
-        : `<div style="position:absolute;inset:0;background:${w.bg||"#111"}"></div>`;
-      const href = w.embed ? "javascript:void(0)" : (w.watch || "#contact");
-      const dataAttrs = w.embed ? `data-embed="${esc(w.embed)}" data-title="${esc(w.title.en)}"` : "";
-      return `
-      <a href="${href}" ${dataAttrs} class="tile${w.embed?" js-play":""} reveal" style="position:relative;display:block;aspect-ratio:${w.ar};overflow:hidden;text-decoration:none;background:#0a0a0a"${w.watch && !w.embed ? ` target="_blank" rel="noopener"` : ""}>
+        ? `<img class="tile-media" src="${w.img}" alt="" aria-hidden="true" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">`
+        : `<div aria-hidden="true" style="position:absolute;inset:0;background:${w.bg||"#111"}"></div>`;
+      const inner = `
         ${mediaStyle}
-        <div class="tile-scan" style="position:absolute;inset:0;pointer-events:none"></div>
-        <div class="tile-frame" style="position:absolute;inset:10px;border:3px solid var(--green);opacity:0;transition:opacity .2s;pointer-events:none"></div>
+        <div class="tile-scan" aria-hidden="true" style="position:absolute;inset:0;pointer-events:none"></div>
+        <div class="tile-frame" aria-hidden="true" style="position:absolute;inset:10px;border:3px solid var(--green);opacity:0;transition:opacity .2s;pointer-events:none"></div>
         <div style="position:absolute;top:13px;inset-inline-end:15px;font-family:var(--font-mono);font-size:12px;font-weight:700;color:#fff;background:rgba(0,0,0,.4);padding:3px 8px">${esc(w.year)}</div>
-        ${hasVideo ? `<div style="position:absolute;top:13px;inset-inline-start:15px;width:8px;height:8px;background:var(--epink);border-radius:50%"></div>` : ""}
+        ${hasVideo ? `<div aria-hidden="true" style="position:absolute;top:13px;inset-inline-start:15px;width:8px;height:8px;background:var(--epink);border-radius:50%"></div>` : ""}
         <div class="tile-cta" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:9px;color:#000;font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.14em;background:var(--green);padding:11px 18px;white-space:nowrap">${ctaLabel}</div>
         <div style="position:absolute;inset-inline:0;bottom:0;padding:20px;background:linear-gradient(0deg,rgba(0,0,0,.9) 0%,rgba(0,0,0,.3) 72%,transparent);display:flex;flex-direction:column;gap:6px">
           <div style="font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--green)">${loc(w.client)}</div>
           <div style="font-family:var(--font-disp);font-size:clamp(18px,2vw,30px);font-weight:800;color:#fff;letter-spacing:-.01em;line-height:1.02">${loc(w.title)}</div>
           <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;color:rgba(255,255,255,.66)">${loc(w.disc)}</div>
-        </div>
-      </a>`;
+        </div>`;
+      const tileStyle = `position:relative;display:block;aspect-ratio:${w.ar};overflow:hidden;text-decoration:none;background:#0a0a0a`;
+      const label = `${w.title.en} — ${w.client.en}`;
+      if (w.embed) {
+        // In-page action (opens the video lightbox) → a real <button>, not a fake link.
+        return `<button type="button" data-embed="${esc(w.embed)}" data-title="${esc(w.title.en)}" class="tile js-play reveal" aria-label="${esc("Watch " + label)}" style="${tileStyle};border:none;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer;text-align:start;width:100%">${inner}</button>`;
+      }
+      // External watch link (Instagram) opens in a new tab; otherwise scrolls to contact.
+      const href = w.watch || "#contact";
+      const ext = w.watch ? ` target="_blank" rel="noopener noreferrer"` : "";
+      return `<a href="${href}"${ext} class="tile reveal" aria-label="${esc(label)}" style="${tileStyle}">${inner}</a>`;
     }).join("");
 
     // attach lightbox click handlers (scoped to the grid we just rendered;
@@ -158,24 +165,57 @@
   function openLightbox(embedUrl, title) {
     const existing = document.getElementById("ogz-lightbox");
     if (existing) existing.remove();
+
+    const opener = document.activeElement;               // restore focus here on close
+    const appRoot = document.getElementById("root");
+    const rtl = document.documentElement.getAttribute("lang") === "ar";
+    // Audible autoplay is blocked by browsers; mute=1 + playsinline=1 lets it start.
+    const src = /[?&]mute=/.test(embedUrl) ? embedUrl : embedUrl + (embedUrl.includes("?") ? "&" : "?") + "mute=1&playsinline=1";
+
     const lb = document.createElement("div");
     lb.id = "ogz-lightbox";
     lb.setAttribute("role", "dialog");
     lb.setAttribute("aria-modal", "true");
     lb.setAttribute("aria-label", title || "Video");
+    lb.setAttribute("dir", rtl ? "rtl" : "ltr");
     lb.style.cssText = "position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.96);display:flex;align-items:center;justify-content:center;animation:lbIn .18s ease";
     lb.innerHTML = `
       <style>@keyframes lbIn{from{opacity:0}to{opacity:1}}</style>
       <div style="position:relative;width:min(90vw,1100px);aspect-ratio:16/9">
-        <iframe src="${esc(embedUrl)}" allow="autoplay;fullscreen" allowfullscreen frameborder="0" style="position:absolute;inset:0;width:100%;height:100%;border:none"></iframe>
+        <iframe src="${esc(src)}" title="${esc(title || "Video")}" allow="autoplay;fullscreen" allowfullscreen frameborder="0" style="position:absolute;inset:0;width:100%;height:100%;border:none"></iframe>
       </div>
-      <button aria-label="Close" style="position:fixed;top:22px;right:26px;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:28px;line-height:1;width:48px;height:48px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center">×</button>`;
+      <button type="button" aria-label="Close video" style="position:fixed;top:22px;inset-inline-end:26px;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:28px;line-height:1;width:48px;height:48px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center">×</button>`;
+
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";             // lock background scroll
+    if (appRoot) appRoot.setAttribute("inert", "");       // background non-interactive for AT/keyboard
     document.body.appendChild(lb);
-    const close = () => lb.remove();
-    lb.querySelector("button").addEventListener("click", close);
-    lb.addEventListener("click", e => { if (e.target === lb) close(); });
-    const onKey = (e) => { if (e.key === "Escape") { close(); document.removeEventListener("keydown", onKey); } };
+
+    const closeBtn = lb.querySelector("button");
+    const focusables = () => [closeBtn, lb.querySelector("iframe")].filter(Boolean);
+
+    const close = () => {
+      document.removeEventListener("keydown", onKey);
+      lb.remove();
+      document.body.style.overflow = prevOverflow;
+      if (appRoot) appRoot.removeAttribute("inert");
+      if (opener && typeof opener.focus === "function") opener.focus(); // return focus to trigger
+    };
+    const onKey = (e) => {
+      if (e.key === "Escape") { close(); return; }
+      if (e.key === "Tab") {                              // trap focus inside the dialog
+        const f = focusables();
+        if (!f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
+
+    closeBtn.addEventListener("click", close);
+    lb.addEventListener("click", (e) => { if (e.target === lb) close(); });
     document.addEventListener("keydown", onKey);
+    closeBtn.focus();                                     // move focus into the dialog
   }
 
   function renderCities() {
@@ -262,22 +302,31 @@
     const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const root = $("#root");
 
+    // number formatting — Arabic-Indic digits in AR so counters match the surrounding copy
+    const fmtN = (n) => n.toLocaleString(root.getAttribute("data-lang") === "ar" ? "ar-EG" : "en-US");
+    const reformatCounters = () =>
+      root.querySelectorAll("[data-count]").forEach((c) => { c.textContent = fmtN(parseInt(c.dataset.val || "0", 10)); });
+
     // language toggle
     const setLang = (lang) => {
       root.setAttribute("data-lang", lang);
       root.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
       document.documentElement.setAttribute("lang", lang);
+      document.documentElement.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+      reformatCounters();
     };
     $("#langToggle").addEventListener("click", () =>
       setLang(root.getAttribute("data-lang") === "en" ? "ar" : "en"));
 
-    // mobile menu
+    // mobile menu (with aria-expanded state)
     const menu = $("#menuOverlay");
-    $("#navBurger").addEventListener("click", () => menu.classList.add("open"));
-    $("#menuClose").addEventListener("click", () => menu.classList.remove("open"));
-    $(".menu-cta").addEventListener("click", () => menu.classList.remove("open"));
+    const burger = $("#navBurger");
+    const setMenu = (open) => { menu.classList.toggle("open", open); if (burger) burger.setAttribute("aria-expanded", open ? "true" : "false"); };
+    burger.addEventListener("click", () => setMenu(true));
+    $("#menuClose").addEventListener("click", () => setMenu(false));
+    $(".menu-cta").addEventListener("click", () => setMenu(false));
     root.querySelectorAll(".menu-link").forEach((a) =>
-      a.addEventListener("click", () => menu.classList.remove("open")));
+      a.addEventListener("click", () => setMenu(false)));
 
     // mute toggle (decorative — no hosted video in this build)
     const muteBtn = $("#muteToggle");
@@ -345,11 +394,13 @@
       reveals.forEach((el) => io.observe(el));
     }
 
-    // count-up numbers
-    const fmt = (n) => n.toLocaleString("en-US");
+    // count-up numbers (locale-aware; dataset.val tracks current value so a
+    // language toggle mid/after animation re-renders in the right numerals)
     root.querySelectorAll("[data-count]").forEach((counter) => {
       const target = parseInt(counter.getAttribute("data-count"), 10) || 0;
-      if (reduce) { counter.textContent = fmt(target); return; }
+      const set = (v) => { counter.dataset.val = v; counter.textContent = fmtN(v); };
+      set(0);
+      if (reduce) { set(target); return; }
       const cio = new IntersectionObserver((entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
@@ -357,7 +408,7 @@
             const tick = (now) => {
               const p = Math.min(1, (now - start) / dur);
               const eased = 1 - Math.pow(1 - p, 3);
-              counter.textContent = fmt(Math.round(eased * target));
+              set(Math.round(eased * target));
               if (p < 1) requestAnimationFrame(tick);
             };
             requestAnimationFrame(tick);
@@ -368,23 +419,34 @@
       cio.observe(counter);
     });
 
-    // work gallery auto-drift (pauses on hover / manual interaction)
+    // work gallery auto-drift (pauses on hover / manual interaction / open lightbox)
     const grid = $(".work-grid");
     if (grid && !reduce) {
-      let paused = false, resumeT = null, last = performance.now();
+      let paused = false, resumeT = null, last = performance.now(), touching = false;
       const SPEED = 26; // px per second
       const pause = (ms) => { paused = true; clearTimeout(resumeT); resumeT = setTimeout(() => { paused = false; }, ms); };
       grid.addEventListener("pointerenter", () => { paused = true; clearTimeout(resumeT); });
-      grid.addEventListener("pointerleave", () => { paused = false; });
-      grid.addEventListener("wheel", () => pause(2600), { passive: true });
-      grid.addEventListener("touchstart", () => pause(3600), { passive: true });
+      grid.addEventListener("pointerleave", () => { if (!touching) paused = false; });
+      // translate vertical wheel into horizontal scroll (otherwise the strip is stuck for mouse users)
+      grid.addEventListener("wheel", (e) => {
+        pause(2600);
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { grid.scrollLeft += e.deltaY; e.preventDefault(); }
+      }, { passive: false });
+      // hold the pause for the whole touch + a short settle, instead of a fixed timeout that can fire mid-swipe
+      grid.addEventListener("touchstart", () => { touching = true; paused = true; clearTimeout(resumeT); }, { passive: true });
+      grid.addEventListener("touchend", () => { touching = false; pause(1800); }, { passive: true });
       const max = () => grid.scrollWidth - grid.clientWidth;
+      const isRtl = () => (root.getAttribute("dir") === "rtl");
       const visible = () => { const b = grid.getBoundingClientRect(); return b.top < window.innerHeight - 40 && b.bottom > 40; };
+      const lightboxOpen = () => !!document.getElementById("ogz-lightbox");
       const step = (now) => {
         const dt = Math.min(0.05, (now - last) / 1000); last = now;
-        if (!paused && visible() && max() > 4) {
-          let nx = grid.scrollLeft + SPEED * dt;
-          if (nx >= max() - 1) nx = 0;
+        if (!paused && !lightboxOpen() && visible() && max() > 4) {
+          const rtl = isRtl();
+          // Modern browsers use a "negative" scrollLeft model in RTL: start at 0, leftward is negative.
+          let nx = grid.scrollLeft + (rtl ? -1 : 1) * SPEED * dt;
+          if (rtl) { if (nx <= -(max() - 1)) nx = 0; }
+          else { if (nx >= max() - 1) nx = 0; }
           grid.scrollLeft = nx;
         }
         requestAnimationFrame(step);

@@ -97,7 +97,18 @@ h1,h2,h3{font-family:var(--font-disp);font-weight:800}
 a[href="#contact"],a[href="#work"],a[href^="mailto"],a[href^="tel"]{transition:transform .18s cubic-bezier(.2,.7,.2,1)}
 a[href="#contact"]:hover,a[href="#work"]:hover,a[href^="mailto"]:hover,a[href^="tel"]:hover{transform:translateY(-2px)}
 
-*:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+/* Focus ring that stays visible on ANY brand background: black outline (visible on
+   green/yellow/cream/white) + white halo (visible on black/ultramarine/epink). */
+*:focus-visible{outline:2px solid #000;outline-offset:2px;box-shadow:0 0 0 4px #fff;border-radius:2px}
+
+/* Skip link must appear on screen when focused (base state is off-screen inline). */
+.skip-link:focus{left:12px !important;top:12px !important;outline:2px solid #000;box-shadow:0 0 0 4px #fff}
+
+/* Touch devices have no hover — show the tile CTA + frame persistently there. */
+@media (hover:none){
+  .tile-cta{opacity:1 !important;transform:translate(-50%,-50%) !important}
+  .tile-frame{opacity:.6 !important}
+}
 a,button{-webkit-tap-highlight-color:transparent}
 img{-webkit-user-drag:none}
 
@@ -147,4 +158,11 @@ image-slot[data-filled] img.is-img{display:block}
   .tile:hover .tile-media{transform:none}
   html{scroll-behavior:auto}
 }
-@media (max-width:860px){ .nav-links{display:none !important} .nav-burger{display:flex !important} .svc-grid{grid-template-columns:1fr !important} .awd-grid,.contact-grid{grid-template-columns:1fr !important} .cities{grid-template-columns:1fr !important} .work-grid .tile{grid-column:span 2 !important} .foot-grid{grid-template-columns:1fr 1fr !important} .ledger-row,.team-row{grid-template-columns:1fr !important;gap:4px !important} }
+@media (max-width:860px){ .nav-links{display:none !important} .nav-burger{display:flex !important} .svc-grid{grid-template-columns:1fr !important} .awd-grid,.contact-grid{grid-template-columns:1fr !important} .cities{grid-template-columns:1fr !important} .foot-grid{grid-template-columns:1fr 1fr !important} .ledger-row,.team-row{grid-template-columns:1fr !important;gap:4px !important} }
+
+/* Mobile work strip: normalize ALL tiles (incl. the very-wide 40/17 ones) to a single
+   swipeable card size so the gallery reads as a row of cards, not one giant banner. */
+@media (max-width:760px){
+  .work-grid>.tile{height:auto !important;width:80vw !important;max-width:330px !important;aspect-ratio:4/5 !important}
+  .foot-grid{grid-template-columns:1fr !important}
+}
