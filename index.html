@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>O!GZ Studios — A straight face that makes you laugh.</title>
 <meta name="description" content="O!GZ Studios — an award-winning, filmmaker-led creative & production house. Full-fledged media production from the first idea to the final frame. Riyadh · Warsaw · Cairo.">
+<link rel="preload" as="font" type="font/woff2" href="fonts/modern-era-extrabold.woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
@@ -252,8 +253,15 @@
             <span style="background:var(--green);color:#000;padding:9px 16px;font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.03em">eqew · <span data-count="150000">0</span> <span class="t-en">crew</span><span class="t-ar">طاقم</span></span>
           </div>
           <div style="display:flex;gap:10px;margin-top:20px">
-            <image-slot id="awd-mabeyn-1" shape="rect" placeholder="Drop a film still" style="flex:1;height:clamp(96px,12vw,128px);border:1px solid rgba(0,0,0,.18)"></image-slot>
-            <image-slot id="awd-mabeyn-2" shape="rect" placeholder="Drop a film still" style="flex:1;height:clamp(96px,12vw,128px);border:1px solid rgba(0,0,0,.18)"></image-slot>
+            <div style="flex:1;height:clamp(96px,12vw,128px);background:#000;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:0 18px">
+              <div aria-hidden="true" class="mouth-bg" style="position:absolute;inset:0;background-image:url('img/mouth-pattern.png');background-size:120px 96px;background-repeat:repeat;opacity:.1"></div>
+              <div style="position:relative;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--green)"><span class="t-en">OFFICIAL SELECTION</span><span class="t-ar">اختيار رسمي</span></div>
+              <div style="position:relative;font-family:var(--font-disp);font-size:clamp(15px,1.7vw,20px);font-weight:800;color:#fff;letter-spacing:-.01em;margin-top:6px;line-height:1.05"><span class="t-en">11th Saudi Film Festival</span><span class="t-ar">مهرجان أفلام السعودية الـ١١</span></div>
+            </div>
+            <div style="flex:1;height:clamp(96px,12vw,128px);background:var(--ultra);display:flex;flex-direction:column;justify-content:center;padding:0 18px">
+              <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--green)"><span class="t-en">SUPPORTED BY</span><span class="t-ar">بدعم من</span></div>
+              <div style="font-family:var(--font-disp);font-size:clamp(15px,1.7vw,20px);font-weight:800;color:#fff;letter-spacing:-.01em;margin-top:6px;line-height:1.05"><span class="t-en">Ithra · 2025</span><span class="t-ar">إثراء · ٢٠٢٥</span></div>
+            </div>
           </div>
         </div>
       </div>

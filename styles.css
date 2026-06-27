@@ -4,10 +4,10 @@
    ════════════════════════════════════════════════════════════════ */
 
 /* ── Brand display font: Modern Era ───────────────────────────── */
-@font-face{font-family:"Modern Era";src:url("fonts/modern-era-medium.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
-@font-face{font-family:"Modern Era";src:url("fonts/modern-era-bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
-@font-face{font-family:"Modern Era";src:url("fonts/modern-era-extrabold.ttf") format("truetype");font-weight:800;font-style:normal;font-display:swap}
-@font-face{font-family:"Modern Era";src:url("fonts/modern-era-black.ttf") format("truetype");font-weight:900;font-style:normal;font-display:swap}
+@font-face{font-family:"Modern Era";src:url("fonts/modern-era-medium.woff2") format("woff2"),url("fonts/modern-era-medium.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Modern Era";src:url("fonts/modern-era-bold.woff2") format("woff2"),url("fonts/modern-era-bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Modern Era";src:url("fonts/modern-era-extrabold.woff2") format("woff2"),url("fonts/modern-era-extrabold.ttf") format("truetype");font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:"Modern Era";src:url("fonts/modern-era-black.woff2") format("woff2"),url("fonts/modern-era-black.ttf") format("truetype");font-weight:900;font-style:normal;font-display:swap}
 
 :root{
   --green:#33EB05; --ultra:#3349EB; --epink:#E602BB; --yellow:#FFD500; --cyan:#1FBDFF; --mint:#28D9A8; --orange:#F59A1F; --tongue:#E33A1F;
