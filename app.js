@@ -145,8 +145,9 @@
       </a>`;
     }).join("");
 
-    // attach lightbox click handlers
-    root.querySelectorAll(".js-play").forEach(tile => {
+    // attach lightbox click handlers (scoped to the grid we just rendered;
+    // runs during boot() before init(), so do NOT reference init()'s `root`)
+    document.querySelectorAll("#workGrid .js-play").forEach(tile => {
       tile.addEventListener("click", (e) => {
         e.preventDefault();
         openLightbox(tile.dataset.embed, tile.dataset.title);
